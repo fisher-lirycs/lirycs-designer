@@ -6,7 +6,7 @@ export type ButtonProps = Partial<
   {
     type?: "normal" | "outline" | "dash";
     theme?: Theme;
-    size?: "normal" | "large" | "small";
+    size?: Size;
     disabled?: boolean;
     block?: boolean;
     ghost?: boolean;

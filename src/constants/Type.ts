@@ -8,4 +8,4 @@ export type Theme =
   | "dark"
   | "light";
 
-export type Size = "lg" | "sm";
+export type Size = "normal" | "large" | "small";
