@@ -6,7 +6,7 @@ export type ButtonProps = Partial<
   {
     type?: "normal" | "outline" | "dash";
     theme?: Theme;
-    size?: Size;
+    size?: "normal" | "large" | "small";
     disabled?: boolean;
     block?: boolean;
     ghost?: boolean;
@@ -30,7 +30,8 @@ export const Button: FC<ButtonProps> = ({
     [`btn-${theme}`]: type === "normal",
     [`btn-outline-${theme}`]: type === "outline" || type === "dash",
     [`btn-dash`]: type === "dash",
-    [`btn-${size}`]: size,
+    [`btn-lg`]: size === "large",
+    [`btn-sm`]: size === "small",
     [`btn-block`]: block,
     [`btn-ghost`]: ghost,
   });
