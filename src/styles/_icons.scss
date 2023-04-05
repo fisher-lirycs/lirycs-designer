@@ -1,0 +1,15 @@
+//
+// Base styles
+//
+
+.li {
+  display: inline-block;
+  vertical-align: -0.125em;
+  fill: currentcolor;
+}
+
+@each $color, $value in $theme-colors {
+  .icon-#{$color} {
+    color: #{$value};
+  }
+}
