@@ -1,9 +1,6 @@
 import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import FillIcon from "./components/Icon";
-import LionIcon from "./components/Icon/LineIcon";
-import HalfIcon from "./components/Icon/HalfIcon";
 
 function App() {
   return (
@@ -22,9 +19,6 @@ function App() {
           Learn React
         </a>
       </header>
-      <FillIcon name={"BookmarksFill"} theme="danger" width={32} height={32} />
-      <LionIcon name="Icon123" theme="danger" width={32} height={32} />
-      <HalfIcon name="BatteryHalf" theme="danger" width={32} height={32} />
     </div>
   );
 }

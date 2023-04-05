@@ -3219,8 +3219,6 @@ export const FillIcon: React.FC<FillIconProps> = ({
 
 FillIcon.defaultProps = {
   name: "Circle0Fill",
-  width: "1em",
-  height: "1em",
+  width: "32",
+  height: "32",
 };
-
-export default FillIcon;

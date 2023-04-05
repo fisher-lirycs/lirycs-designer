@@ -1,7 +1,7 @@
 import React from "react";
 import classNames from "classnames";
 import { Theme } from "../../constants/Type";
-import { LionIConType } from "../../constants/Icon";
+import { LineIConType } from "../../constants/Icon";
 import { ReactComponent as Circle0 } from "../../assets/Icons/outline/0-circle.svg";
 import { ReactComponent as Square0 } from "../../assets/Icons/outline/0-square.svg";
 import { ReactComponent as Circle1 } from "../../assets/Icons/outline/1-circle.svg";
@@ -1270,15 +1270,15 @@ import { ReactComponent as Youtube } from "../../assets/Icons/outline/youtube.sv
 import { ReactComponent as ZoomIn } from "../../assets/Icons/outline/zoom-in.svg";
 import { ReactComponent as ZoomOut } from "../../assets/Icons/outline/zoom-out.svg";
 
-export interface LionIconProps {
-  name: LionIConType;
+export interface LineIconProps {
+  name: LineIConType;
   width?: number | string;
   height?: number | string;
   theme?: Theme;
   className?: string;
 }
 
-export const LionIcon: React.FC<LionIconProps> = ({
+export const LineIcon: React.FC<LineIconProps> = ({
   name,
   width,
   height,
@@ -4602,10 +4602,8 @@ export const LionIcon: React.FC<LionIconProps> = ({
   }
 };
 
-LionIcon.defaultProps = {
+LineIcon.defaultProps = {
   name: "Icon123",
-  width: "1em",
-  height: "1em",
+  width: "32",
+  height: "32",
 };
-
-export default LionIcon;

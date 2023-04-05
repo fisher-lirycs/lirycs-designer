@@ -668,7 +668,7 @@ export type FillIConType =
   | "XOctagonFill"
   | "XSquareFill";
 
-export type LionIConType =
+export type LineIConType =
   | "Circle0"
   | "Square0"
   | "Circle1"

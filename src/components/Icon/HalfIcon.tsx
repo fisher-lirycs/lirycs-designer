@@ -76,8 +76,6 @@ export const HalfIcon: React.FC<HalfIconProps> = ({
 
 HalfIcon.defaultProps = {
   name: "BatteryHalf",
-  width: "1em",
-  height: "1em",
+  width: "32",
+  height: "32",
 };
-
-export default HalfIcon;
