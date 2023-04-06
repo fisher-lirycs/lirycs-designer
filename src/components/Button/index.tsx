@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import classNames from "classnames";
 import { Size, Theme } from "../../constants/Type";
+import { IconTypes } from "../../constants/Icon";
+import Icon from "../Icon";
 
 export type ButtonProps = Partial<
   {
@@ -9,7 +11,7 @@ export type ButtonProps = Partial<
     size?: Size;
     disabled?: boolean;
     block?: boolean;
-    ghost?: boolean;
+    icon?: IconTypes;
     className?: string;
     children: React.ReactNode;
   } & Omit<React.ButtonHTMLAttributes<HTMLElement>, "type">
@@ -21,7 +23,7 @@ export const Button: FC<ButtonProps> = ({
   size,
   disabled,
   block,
-  ghost,
+  icon,
   className,
   children,
   ...rest
@@ -33,11 +35,11 @@ export const Button: FC<ButtonProps> = ({
     [`btn-lg`]: size === "large",
     [`btn-sm`]: size === "small",
     [`btn-block`]: block,
-    [`btn-ghost`]: ghost,
   });
 
   return (
     <button className={classes} disabled={disabled} {...rest}>
+      {icon && <Icon name={icon} />}
       {children}
     </button>
   );

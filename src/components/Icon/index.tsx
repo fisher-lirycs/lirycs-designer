@@ -5,16 +5,16 @@ import { Icons, IconTypes } from "../../constants/Icon";
 
 export interface IconProps {
   readonly name: IconTypes;
-  readonly width?: number;
-  readonly height?: number;
+  readonly width?: number | string;
+  readonly height?: number | string;
   readonly theme?: Theme;
   readonly className?: string;
 }
 
 type SvgProps = {
   readonly svg: React.FC<React.SVGProps<SVGAElement>>;
-  readonly width?: number;
-  readonly height?: number;
+  readonly width?: number | string;
+  readonly height?: number | string;
   readonly theme?: Theme;
   readonly className?: string;
 };
@@ -51,7 +51,7 @@ export const Icon: React.FC<IconProps> = ({
 };
 
 Icon.defaultProps = {
-  width: 32,
-  height: 32,
+  width: "1em",
+  height: "1em",
 };
 export default Icon;

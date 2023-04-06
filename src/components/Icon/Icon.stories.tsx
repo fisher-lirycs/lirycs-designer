@@ -20,7 +20,7 @@ const AllTemplate: ComponentStory<typeof Icon> = () => (
   <>
     {Object.keys(Icons).map((key, index) => (
       <span key={index} style={{ margin: "10px" }}>
-        <Icon name={key as IconTypes} />
+        <Icon name={key as IconTypes} width={20} height={20} />
       </span>
     ))}
   </>
