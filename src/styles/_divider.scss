@@ -1,0 +1,126 @@
+//
+// Base styles
+//
+
+.divider {
+  --#{$prefix}divider-margin: #{$divider-margin};
+  --#{$prefix}divider-padding: #{$divider-padding};
+  --#{$prefix}divider-color: #{$divider-color};
+  --#{$prefix}divider-font-size: #{$divider-font-size};
+  --#{$prefix}divider-line-height: #{$divider-line-height};
+  --#{$prefix}divider-font-family: #{$divider-font-family};
+  --#{$prefix}divider-horizontal-width: 100%;
+  --#{$prefix}divider-horizontal-margin: 24px 0;
+  --#{$prefix}divider-horizontal-margin-with-text: 16px 0;
+
+  box-sizing: border-box;
+  margin: var(--#{$prefix}divider-margin);
+  padding: var(--#{$prefix}divider-padding);
+  color: var(--#{$prefix}divider-color);
+  font-size: var(--#{$prefix}divider-font-size);
+  line-height: var(--#{$prefix}divider-line-height);
+  list-style: none;
+  font-family: var(--#{$prefix}divider-font-family);
+  border-block-start: $divider-border-block-start;
+
+  &.divider-horizontal {
+    display: flex;
+    clear: both;
+    width: var(--#{$prefix}divider-horizontal-width);
+    min-width: var(--#{$prefix}divider-horizontal-width);
+    margin: var(--#{$prefix}divider-horizontal-margin);
+
+    &.divider-with-text {
+      display: flex;
+      align-items: center;
+      margin: var(--#{$prefix}divider-horizontal-margin-with-text);
+      font-weight: 500;
+      white-space: nowrap;
+      text-align: center;
+      border-block-start: 0 rgba(5, 5, 5, 0.179);
+
+      &::before {
+        position: relative;
+        width: 50%;
+        border-block-start: 1px solid transparent;
+        border-block-start-color: inherit;
+        border-block-end: 0;
+        transform: translateY(50%);
+        content: "";
+      }
+
+      &::after {
+        position: relative;
+        width: 50%;
+        border-block-start: 1px solid transparent;
+        border-block-start-color: inherit;
+        border-block-end: 0;
+        transform: translateY(50%);
+        content: "";
+      }
+
+      &.divider-with-text-left {
+        &::before {
+          width: 5%;
+        }
+        &::after {
+          width: 95%;
+        }
+      }
+
+      &.divider-with-text-right {
+        &::before {
+          width: 95%;
+        }
+        &::after {
+          width: 5%;
+        }
+      }
+
+      &.divider-dash-with-text {
+        &::before {
+          border-block-start: 1px dashed transparent;
+          border-block-start-color: inherit;
+        }
+        &::after {
+          border-block-start: 1px dashed transparent;
+          border-block-start-color: inherit;
+        }
+      }
+
+      &.divider-plain {
+        font-weight: 400;
+        font-size: 14px;
+      }
+    }
+  }
+
+  &.divider-vertical {
+    position: relative;
+    top: -0.06em;
+    display: inline-block;
+    height: 0.9em;
+    margin: 0 8px;
+    vertical-align: middle;
+    border-top: 0;
+    border-inline-start: 1px solid rgba(5, 5, 5, 0.06);
+  }
+
+  &.divider-dashed {
+    border-style: dashed;
+    border-width: 1px 0 0;
+  }
+
+  .divider-inner-text {
+    display: inline-block;
+    padding: 0 1em;
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .divider-#{$color} {
+    color: $value;
+    border-block-start-color: $value !important;
+    border-inline-start-color: $value !important;
+  }
+}
