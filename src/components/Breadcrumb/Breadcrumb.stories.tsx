@@ -19,7 +19,7 @@ Default.args = {
       title: "Home",
     },
     {
-      title: <a href="">Application Center</a>,
+      title: <a href="https://www.baidu.com">Application Center</a>,
     },
     {
       title: (
