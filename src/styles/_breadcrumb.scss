@@ -61,6 +61,24 @@
 
 .breadcrumb-item {
   box-sizing: border-box;
+
+  .breadcrumb-link {
+    color: var(--#{$prefix}breadcrumb-color);
+    transition: color 0.2s;
+    padding: var(--#{$prefix}breadcrumb-link-padding-y)
+      var(--#{$prefix}breadcrumb-link-padding-x);
+    border-radius: var(--#{$prefix}breadcrumb-link-border-radius);
+    display: inline-block;
+    margin-inline: -4px;
+    text-decoration: none;
+    background-color: transparent;
+    outline: none;
+    cursor: pointer;
+
+    > span {
+      margin-inline-start: 4px;
+    }
+  }
 }
 
 .breadcrumb-separator {

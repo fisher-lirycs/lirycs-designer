@@ -1,9 +1,8 @@
 import React, { Fragment, ReactNode } from "react";
-import classNames from "classnames";
 
 type ItemType = {
   title: ReactNode;
-  className?: string;
+  href?: string;
 };
 
 export interface BreadcrumbProps {
@@ -18,7 +17,15 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items, separator }) => {
         {items.map((item, index) => (
           <Fragment key={index}>
             <li className="breadcrumb-item">
-              <span>{item.title}</span>
+              <span>
+                {item.href ? (
+                  <a href={item.href} className="breadcrumb-link">
+                    {item.title}
+                  </a>
+                ) : (
+                  item.title
+                )}
+              </span>
             </li>
             {index < items.length - 1 && (
               <li className="breadcrumb-separator ">
