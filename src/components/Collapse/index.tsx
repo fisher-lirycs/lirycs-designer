@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useRef, MutableRefObject } from "react";
 import classNames from "classnames";
 import { Transition } from "react-transition-group";
 
@@ -17,15 +17,50 @@ export const Collapse: React.FC<CollapseProps> = ({
   className,
   children,
 }) => {
+  const nodeRef: MutableRefObject<any> = useRef(null);
   return (
-    <Transition in={collapsein} timeout={timeout} unmountOnExit={unmountOnExit}>
+    <Transition
+      in={collapsein}
+      nodeRef={nodeRef}
+      timeout={timeout}
+      unmountOnExit={unmountOnExit}
+      onEntering={() => {
+        const currentElement = nodeRef.current as HTMLElement;
+        const height =
+          (currentElement &&
+            (currentElement.children[0] as HTMLElement).offsetHeight) ||
+          0;
+        currentElement.style.height = height + "px";
+      }}
+      onEntered={() => {
+        const currentElement = nodeRef.current as HTMLElement;
+        currentElement.style.height = "";
+      }}
+      onExiting={() => {
+        const currentElement = nodeRef.current as HTMLElement;
+        const height =
+          (currentElement &&
+            (currentElement.children[0] as HTMLElement).offsetHeight) ||
+          0;
+        currentElement.style.height = height + "px";
+        currentElement.classList.add("collapsing");
+        setTimeout(() => {
+          currentElement.style.height = "";
+        }, 0);
+      }}
+    >
       {(state) => {
         const classes = classNames(className, {
           [`collapse`]: !state || state === "entered" || state === "exited",
-          [`collapsing`]: state === "entering" || state === "exiting",
+          [`collapsing`]: state === "entering",
           [`show`]: state === "entered",
         });
-        return <div className={classes}>{children}</div>;
+
+        return (
+          <div ref={nodeRef} className={classes}>
+            <div>{children}</div>
+          </div>
+        );
       }}
     </Transition>
   );
