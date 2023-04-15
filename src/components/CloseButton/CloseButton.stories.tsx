@@ -1,13 +1,13 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import CloseButton from ".";
 
 export default {
   title: "CloseButton",
   component: CloseButton,
-} as ComponentMeta<typeof CloseButton>;
+} as Meta<typeof CloseButton>;
 
-const DefaultTemplate: ComponentStory<typeof CloseButton> = (args) => (
+const DefaultTemplate: StoryFn<typeof CloseButton> = (args) => (
   <CloseButton {...args} />
 );
 

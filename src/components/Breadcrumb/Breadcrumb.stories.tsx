@@ -1,14 +1,14 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import Breadcrumb from ".";
 import Icon from "../Icon";
 
 export default {
   title: "Breadcrumb",
   component: Breadcrumb,
-} as ComponentMeta<typeof Breadcrumb>;
+} as Meta<typeof Breadcrumb>;
 
-const DefaultTemplate: ComponentStory<typeof Breadcrumb> = (args) => (
+const DefaultTemplate: StoryFn<typeof Breadcrumb> = (args) => (
   <Breadcrumb {...args} />
 );
 

@@ -1,13 +1,13 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import Accordion from ".";
 
 export default {
   title: "Accordion",
   component: Accordion,
-} as ComponentMeta<typeof Accordion>;
+} as Meta<typeof Accordion>;
 
-const DefaultTemplate: ComponentStory<typeof Accordion> = (args) => {
+const DefaultTemplate: StoryFn<typeof Accordion> = (args) => {
   return (
     <Accordion {...args}>
       <Accordion.Item eventKey="0" header="Accordion Item #1">

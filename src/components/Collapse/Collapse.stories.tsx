@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import Collapse from ".";
 import Button from "../Button";
 
 export default {
   title: "Collapse",
   component: Collapse,
-} as ComponentMeta<typeof Collapse>;
+} as Meta<typeof Collapse>;
 
-const DefaultTemplate: ComponentStory<typeof Collapse> = () => {
+const DefaultTemplate: StoryFn<typeof Collapse> = () => {
   const [open, setOpen] = useState(false);
 
   return (

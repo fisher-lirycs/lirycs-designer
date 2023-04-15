@@ -1,13 +1,13 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import Divider from ".";
 
 export default {
   title: "Divider",
   component: Divider,
-} as ComponentMeta<typeof Divider>;
+} as Meta<typeof Divider>;
 
-const HorizontalTemplate: ComponentStory<typeof Divider> = (args) => {
+const HorizontalTemplate: StoryFn<typeof Divider> = (args) => {
   return (
     <>
       <p>
@@ -36,7 +36,7 @@ const HorizontalTemplate: ComponentStory<typeof Divider> = (args) => {
 export const Horizontal = HorizontalTemplate.bind({});
 Horizontal.args = {};
 
-const VerticalTemplate: ComponentStory<typeof Divider> = (args) => {
+const VerticalTemplate: StoryFn<typeof Divider> = (args) => {
   return (
     <>
       <span>Text</span>

@@ -1,22 +1,20 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import { Icon } from ".";
 import { Icons, IconTypes } from "../../constants/Icon";
 
 export default {
   title: "Icon",
   component: Icon,
-} as ComponentMeta<typeof Icon>;
+} as Meta<typeof Icon>;
 
-const DefaultTemplate: ComponentStory<typeof Icon> = (args) => (
-  <Icon {...args} />
-);
+const DefaultTemplate: StoryFn<typeof Icon> = (args) => <Icon {...args} />;
 export const Default = DefaultTemplate.bind({});
 Default.args = {
   name: "Icon0CircleFill",
 };
 
-const AllTemplate: ComponentStory<typeof Icon> = () => (
+const AllTemplate: StoryFn<typeof Icon> = () => (
   <>
     {Object.keys(Icons).map((key, index) => (
       <span key={index} style={{ margin: "10px" }}>

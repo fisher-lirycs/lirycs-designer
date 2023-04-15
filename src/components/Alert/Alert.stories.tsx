@@ -1,14 +1,14 @@
 import React from "react";
-import { ComponentMeta, ComponentStory } from "@storybook/react";
+import { Meta, StoryFn } from "@storybook/react";
 import Alert from ".";
 import Divider from "../Divider";
 
 export default {
   title: "Alert",
   component: Alert,
-} as ComponentMeta<typeof Alert>;
+} as Meta<typeof Alert>;
 
-const DefaultTemplate: ComponentStory<typeof Alert> = (args) => (
+const DefaultTemplate: StoryFn<typeof Alert> = (args) => (
   <Alert {...args}>
     <p>
       Aww yeah, you successfully read this important alert message. This example
