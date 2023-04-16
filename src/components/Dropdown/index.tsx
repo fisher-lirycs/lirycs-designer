@@ -1,6 +1,5 @@
 import React, { createContext, useState } from "react";
 import classNames from "classnames";
-import Button from "../Button";
 import { Theme } from "../../constants/Type";
 import { DropdownItem, DropdownItemProps } from "./Item";
 import {
@@ -10,6 +9,7 @@ import {
   useInteractions,
   autoPlacement,
   autoUpdate,
+  offset,
 } from "@floating-ui/react";
 
 export interface DropdownProps {
@@ -45,7 +45,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
   const { x, y, strategy, refs, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
-    middleware: [autoPlacement()],
+    middleware: [autoPlacement(), offset(5)],
     whileElementsMounted: autoUpdate,
   });
 
