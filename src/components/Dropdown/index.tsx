@@ -1,77 +1,105 @@
 import React, { createContext, useState } from "react";
 import classNames from "classnames";
 import { Theme } from "../../constants/Type";
+import Button from "../Button";
+import ButtonGroup from "../ButtonGroup";
 import { DropdownItem, DropdownItemProps } from "./Item";
 import {
   useFloating,
   useClick,
   useDismiss,
   useInteractions,
-  autoPlacement,
   autoUpdate,
   offset,
+  flip,
 } from "@floating-ui/react";
+import { DropdownDivider } from "./Divider";
 
 export interface DropdownProps {
+  as?: "ButtonGroup";
   title: string;
   theme?: Theme;
   id: string;
-  align?: "start" | "end";
-  drop?: "up" | "up-centered" | "start" | "end" | "down" | "down-centered";
+  drop?:
+    | "top"
+    | "right"
+    | "bottom"
+    | "left"
+    | "top-start"
+    | "top-end"
+    | "right-start"
+    | "right-end"
+    | "bottom-start"
+    | "bottom-end"
+    | "left-start"
+    | "left-end";
   autoClose?: "yes" | "outside" | "inside" | "no";
   split?: boolean;
+  size?: "normal" | "small" | "large";
+  darkMenu?: boolean;
   children: React.ReactNode;
 }
+
+type DropdownMainProps = DropdownProps & {
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
 export interface IDropdownContext {
   activeKey: string | null | undefined;
   onSelect?: (eventKey: string) => void;
+  autoClose?: "yes" | "outside" | "inside" | "no";
+  isOpen?: boolean;
+  setIsOpen?: React.Dispatch<React.SetStateAction<boolean>>;
 }
+
 export const DropdownContext = createContext<IDropdownContext>({
   activeKey: null,
 });
 
-export const Dropdown: React.FC<DropdownProps> = ({
+const DropdownMain: React.FC<DropdownMainProps> = ({
+  as,
   title,
   theme,
   id,
-  align,
   drop,
   autoClose,
   split,
+  size,
+  darkMenu,
+  isOpen,
+  setIsOpen,
   children,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
   const { x, y, strategy, refs, context } = useFloating({
     open: isOpen,
     onOpenChange: setIsOpen,
-    middleware: [autoPlacement(), offset(5)],
+    placement: drop,
+    middleware: [flip(), offset(2)],
     whileElementsMounted: autoUpdate,
   });
 
-  const click = useClick(context, {
-    enabled: true,
-    toggle: true,
-  });
+  const click = useClick(context);
 
-  const dismiss = useDismiss(context);
+  const dismiss = useDismiss(context, {
+    outsidePress: autoClose === "yes" || autoClose === "outside",
+  });
 
   const { getReferenceProps, getFloatingProps } = useInteractions([
     click,
     dismiss,
   ]);
 
-  const classes = classNames("dropdown", {
-    [`show`]: isOpen,
-  });
-
   const toggleClasses = classNames("btn", "dropdown-toggle", {
     [`btn-${theme}`]: theme,
+    [`btn-lg`]: size === "large",
+    [`btn-sm`]: size === "small",
     [`show`]: isOpen,
   });
 
   const menuClasses = classNames("dropdown-menu", {
     [`show`]: isOpen,
+    [`dropdown-menu-dark`]: darkMenu,
   });
 
   const [activeKey, setActiveKey] = useState<string>();
@@ -82,19 +110,38 @@ export const Dropdown: React.FC<DropdownProps> = ({
   const passedContext: IDropdownContext = {
     activeKey: activeKey,
     onSelect: handleClick,
+    autoClose: autoClose,
+    isOpen: isOpen,
+    setIsOpen: setIsOpen,
   };
 
   return (
-    <div className={classes}>
-      <button
-        id={id}
-        aria-expanded={isOpen}
-        className={toggleClasses}
-        ref={refs.setReference}
-        {...getReferenceProps()}
-      >
-        {title}
-      </button>
+    <>
+      {split ? (
+        <>
+          <Button theme={theme} size={size}>
+            {title}
+          </Button>
+          <button
+            id={id}
+            aria-expanded={isOpen}
+            className={toggleClasses}
+            ref={refs.setReference}
+            {...getReferenceProps()}
+          ></button>
+        </>
+      ) : (
+        <button
+          id={id}
+          aria-expanded={isOpen}
+          className={toggleClasses}
+          ref={refs.setReference}
+          {...getReferenceProps()}
+        >
+          {title}
+        </button>
+      )}
+
       <DropdownContext.Provider value={passedContext}>
         {isOpen && (
           <div
@@ -113,18 +160,44 @@ export const Dropdown: React.FC<DropdownProps> = ({
           </div>
         )}
       </DropdownContext.Provider>
-    </div>
+    </>
+  );
+};
+export const Dropdown: React.FC<DropdownProps> = ({ split, as, ...rest }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const classes = classNames("dropdown", {
+    [`show`]: isOpen,
+    [`btn-group`]: as === "ButtonGroup",
+  });
+
+  return (
+    <>
+      {split ? (
+        <ButtonGroup className={classes} size={rest.size}>
+          <DropdownMain {...rest} isOpen={isOpen} setIsOpen={setIsOpen} split />
+        </ButtonGroup>
+      ) : (
+        <div className={classes}>
+          <DropdownMain {...rest} isOpen={isOpen} setIsOpen={setIsOpen} />
+        </div>
+      )}
+    </>
   );
 };
 
 Dropdown.defaultProps = {
   theme: "primary",
+  drop: "bottom-start",
+  size: "normal",
+  autoClose: "yes",
 };
 
 export type DropdownComponent = React.FC<DropdownProps> & {
   Item: React.FC<DropdownItemProps>;
+  Divider: React.FC;
 };
 const TransDropdown = Dropdown as DropdownComponent;
 TransDropdown.Item = DropdownItem;
+TransDropdown.Divider = DropdownDivider;
 
 export default TransDropdown;

@@ -13,6 +13,8 @@ const DefaultTemplate: StoryFn<typeof Dropdown> = (args) => {
       <Dropdown.Item eventKey="0">Action</Dropdown.Item>
       <Dropdown.Item eventKey="1">Another action</Dropdown.Item>
       <Dropdown.Item eventKey="2">Something else</Dropdown.Item>
+      <Dropdown.Divider />
+      <Dropdown.Item eventKey="3">Separated</Dropdown.Item>
     </Dropdown>
   );
 };

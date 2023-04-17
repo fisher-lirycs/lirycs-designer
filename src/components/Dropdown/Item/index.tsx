@@ -4,7 +4,6 @@ import { DropdownContext } from "..";
 
 export interface DropdownItemProps {
   eventKey: string;
-  active?: boolean;
   disabled?: boolean;
   onclick?: () => void;
   children: ReactNode;
@@ -24,6 +23,9 @@ export const DropdownItem: React.FC<DropdownItemProps> = ({
   const handleClick = () => {
     context.onSelect && context.onSelect(eventKey);
     onclick && onclick();
+    if (context.autoClose === "yes" || context.autoClose === "inside") {
+      context.setIsOpen && context.setIsOpen(!context.isOpen);
+    }
   };
   return (
     <button className={classes} disabled={disabled} onClick={handleClick}>
