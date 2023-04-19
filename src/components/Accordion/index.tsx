@@ -67,7 +67,7 @@ const Accordion: React.FC<AccordionProps> = ({
         return childeElement;
       } else {
         console.warn(
-          "Warining: Accordion has a child which is not a AccordionItem"
+          "Warining: Accordion has a child which is not an AccordionItem"
         );
       }
     });
