@@ -1,4 +1,4 @@
-import React, { useState, createContext, useCallback } from "react";
+import React, { useState, createContext, useCallback, useEffect } from "react";
 import classNames from "classnames";
 import { CarouselItem, CarouselItemProps } from "./Item";
 import { CarouselCaption, CarouselCaptionProps } from "./Caption";
@@ -112,6 +112,15 @@ export const Carousel: React.FC<CarouselProps> = ({
     [itemCount]
   );
 
+  useEffect(() => {
+    if (interval && interval > 0) {
+      const timer = setInterval(() => {
+        handleClick(activeIndex, "next");
+      }, interval);
+      return () => clearInterval(timer);
+    }
+  }, [activeIndex, handleClick, interval]);
+
   return (
     <div className={classes}>
       {indicators && (
@@ -173,7 +182,7 @@ Carousel.defaultProps = {
   controls: true,
   fade: false,
   indicators: true,
-  interval: 3000,
+  interval: 5000,
   nextIcon: <span aria-hidden="true" className="carousel-control-next-icon" />,
   nextLabel: "Next",
   prevIcon: <span aria-hidden="true" className="carousel-control-prev-icon" />,
