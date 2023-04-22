@@ -4,7 +4,7 @@ import Carousel from ".";
 import Image from "../Image";
 import firstSilder from "../../assets/Images/First slide.svg";
 import secondSilder from "../../assets/Images/Second slide.svg";
-import thirddSilder from "../../assets/Images/Third slide.svg";
+import thirdSilder from "../../assets/Images/Third slide.svg";
 
 export default {
   title: "Carousel",
@@ -26,7 +26,7 @@ const DefaultTemplate: StoryFn<typeof Carousel> = (args) => (
       </Carousel.Caption>
     </Carousel.Item>
     <Carousel.Item>
-      <Image src={thirddSilder} className="d-block w-100" alt="Third slide" />
+      <Image src={thirdSilder} className="d-block w-100" alt="Third slide" />
       <Carousel.Caption title={"Third slide label"}>
         Praesent commodo cursus magna, vel scelerisque nisl consectetur.
       </Carousel.Caption>
@@ -36,5 +36,6 @@ const DefaultTemplate: StoryFn<typeof Carousel> = (args) => (
 
 export const Default = DefaultTemplate.bind({});
 Default.args = {
-  defaultIndex: 2,
+  defaultIndex: 0,
+  slide: true,
 };

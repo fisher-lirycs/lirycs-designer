@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useCallback } from "react";
 import classNames from "classnames";
 import { CarouselItem, CarouselItemProps } from "./Item";
 import { CarouselCaption, CarouselCaptionProps } from "./Caption";
@@ -25,15 +25,22 @@ export interface CarouselProps {
   children: React.ReactNode;
 }
 
+export type TDirection = "next" | "prev";
+
 export interface ICarouselContext {
   itemCount: number;
   activeIndex: number;
+  direction: TDirection;
+  slide?: boolean | undefined;
+  fade?: boolean | undefined;
+  interval?: number;
   onSelect?: (eventKey: number, event: Object | null) => void;
 }
 
 export const CarouselContext = createContext<ICarouselContext>({
   itemCount: 0,
   activeIndex: 0,
+  direction: "next",
 });
 
 export const Carousel: React.FC<CarouselProps> = ({
@@ -58,7 +65,9 @@ export const Carousel: React.FC<CarouselProps> = ({
   children,
 }) => {
   const itemCount = React.Children.toArray(children).length;
-  const classes = classNames("carousel", "slide", className);
+  const classes = classNames("carousel", "slide", className, {
+    [`carousel-dark`]: dark,
+  });
   const renderChildren = () => {
     return React.Children.map(children, (child, index) => {
       const childeElement =
@@ -75,27 +84,35 @@ export const Carousel: React.FC<CarouselProps> = ({
   };
 
   const [activeIndex, setActiveIndex] = useState(defaultIndex);
-
+  const [direction, setDirection] = useState<TDirection>("next");
   const passedContext: ICarouselContext = {
     itemCount: itemCount,
     activeIndex: activeIndex as number,
+    slide: slide,
+    fade: fade,
+    interval: interval,
+    direction: direction,
   };
 
-  const handlePrevClick = () => {
-    if (activeIndex === 0) {
-      setActiveIndex(itemCount - 1);
-    } else {
-      setActiveIndex((activeIndex as number) - 1);
-    }
-  };
-
-  const handleNextClick = () => {
-    if (activeIndex === itemCount - 1) {
-      setActiveIndex(0);
-    } else {
-      setActiveIndex((activeIndex as number) + 1);
-    }
-  };
+  const handleClick = useCallback(
+    (activeIndex: number, direction: TDirection) => {
+      setDirection(direction);
+      if (direction === "prev") {
+        if (activeIndex === 0) {
+          setActiveIndex(itemCount - 1);
+        } else {
+          setActiveIndex((activeIndex as number) - 1);
+        }
+      } else {
+        if (activeIndex === itemCount - 1) {
+          setActiveIndex(0);
+        } else {
+          setActiveIndex((activeIndex as number) + 1);
+        }
+      }
+    },
+    [itemCount]
+  );
 
   return (
     <div className={classes}>
@@ -126,11 +143,17 @@ export const Carousel: React.FC<CarouselProps> = ({
       </div>
       {controls && (
         <>
-          <button className="carousel-control-prev" onClick={handlePrevClick}>
+          <button
+            className="carousel-control-prev"
+            onClick={() => handleClick(activeIndex as number, "prev")}
+          >
             {prevIcon}
             <span className="visually-hidden">{prevLabel}</span>
           </button>
-          <button className="carousel-control-next" onClick={handleNextClick}>
+          <button
+            className="carousel-control-next"
+            onClick={() => handleClick(activeIndex as number, "next")}
+          >
             {nextIcon}
             <span className="visually-hidden">{nextLabel}</span>
           </button>
@@ -145,7 +168,7 @@ Carousel.defaultProps = {
   controls: true,
   fade: false,
   indicators: true,
-  interval: 5000,
+  interval: 300,
   nextIcon: <span aria-hidden="true" className="carousel-control-next-icon" />,
   nextLabel: "Next",
   prevIcon: <span aria-hidden="true" className="carousel-control-prev-icon" />,
