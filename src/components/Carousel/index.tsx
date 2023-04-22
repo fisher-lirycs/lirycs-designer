@@ -33,7 +33,6 @@ export interface ICarouselContext {
   direction: TDirection;
   slide?: boolean | undefined;
   fade?: boolean | undefined;
-  interval?: number;
   onSelect?: (eventKey: number, event: Object | null) => void;
 }
 
@@ -83,14 +82,13 @@ export const Carousel: React.FC<CarouselProps> = ({
     });
   };
 
-  const [activeIndex, setActiveIndex] = useState(defaultIndex);
+  const [activeIndex, setActiveIndex] = useState(defaultIndex || 0);
   const [direction, setDirection] = useState<TDirection>("next");
   const passedContext: ICarouselContext = {
     itemCount: itemCount,
     activeIndex: activeIndex as number,
     slide: slide,
     fade: fade,
-    interval: interval,
     direction: direction,
   };
 
@@ -130,7 +128,14 @@ export const Carousel: React.FC<CarouselProps> = ({
                 aria-current={index === activeIndex}
                 className={indicatorClasses}
                 data-lrc-target=""
-                onClick={() => setActiveIndex(index)}
+                onClick={() => {
+                  if (index > activeIndex) {
+                    setDirection("next");
+                  } else {
+                    setDirection("prev");
+                  }
+                  setActiveIndex(index);
+                }}
               ></button>
             );
           })}
@@ -168,7 +173,7 @@ Carousel.defaultProps = {
   controls: true,
   fade: false,
   indicators: true,
-  interval: 300,
+  interval: 3000,
   nextIcon: <span aria-hidden="true" className="carousel-control-next-icon" />,
   nextLabel: "Next",
   prevIcon: <span aria-hidden="true" className="carousel-control-prev-icon" />,

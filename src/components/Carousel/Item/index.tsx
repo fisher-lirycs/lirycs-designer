@@ -64,7 +64,7 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
         index={index as number}
         activeIndex={context.activeIndex}
         direction={context.direction}
-        timeout={context.interval}
+        timeout={300}
       >
         {children}
       </TransitionItem>
