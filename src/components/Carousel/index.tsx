@@ -65,6 +65,7 @@ export const Carousel: React.FC<CarouselProps> = ({
 }) => {
   const itemCount = React.Children.toArray(children).length;
   const classes = classNames("carousel", "slide", className, {
+    [`carousel-fade`]: fade,
     [`carousel-dark`]: dark,
   });
   const renderChildren = () => {

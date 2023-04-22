@@ -19,7 +19,10 @@ const TransitionItem: React.FC<TransitionItemProps> = ({
   children,
 }) => {
   return (
-    <Transition in={index === activeIndex} timeout={timeout as number}>
+    <Transition
+      in={index === activeIndex}
+      timeout={timeout as number}
+    >
       {(state) => {
         const classes = classNames(
           {
@@ -58,13 +61,13 @@ export const CarouselItem: React.FC<CarouselItemProps> = ({
 }) => {
   const context = useContext(CarouselContext);
 
-  if (context.slide || context.fade) {
+  if (context.slide) {
     return (
       <TransitionItem
         index={index as number}
         activeIndex={context.activeIndex}
         direction={context.direction}
-        timeout={400}
+        timeout={350}
       >
         {children}
       </TransitionItem>
