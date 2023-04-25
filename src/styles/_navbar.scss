@@ -16,7 +16,7 @@
   --#{$prefix}navbar-brand-font-size: #{$navbar-brand-font-size};
   --#{$prefix}navbar-brand-color: #{$navbar-light-brand-color};
   --#{$prefix}navbar-brand-hover-color: #{$navbar-light-brand-hover-color};
-  --#{$prefix}navbar-nav-link-padding-x: #{$navbar-nav-link-padding-x};
+  --#{$prefix}navbar-nav-btn-padding-x: #{$navbar-nav-btn-padding-x};
   --#{$prefix}navbar-toggler-padding-y: #{$navbar-toggler-padding-y};
   --#{$prefix}navbar-toggler-padding-x: #{$navbar-toggler-padding-x};
   --#{$prefix}navbar-toggler-font-size: #{$navbar-toggler-font-size};
@@ -81,17 +81,17 @@
 
 // Navbar nav
 //
-// Custom navbar navigation (doesn't require `.nav`, but does make use of `.nav-link`).
+// Custom navbar navigation (doesn't require `.nav`, but does make use of `.nav-btn`).
 
 .navbar-nav {
   // scss-docs-start navbar-nav-css-vars
-  --#{$prefix}nav-link-padding-x: 0;
-  --#{$prefix}nav-link-padding-y: #{$nav-link-padding-y};
-  @include rfs($nav-link-font-size, --#{$prefix}nav-link-font-size);
-  --#{$prefix}nav-link-font-weight: #{$nav-link-font-weight};
-  --#{$prefix}nav-link-color: var(--#{$prefix}navbar-color);
-  --#{$prefix}nav-link-hover-color: var(--#{$prefix}navbar-hover-color);
-  --#{$prefix}nav-link-disabled-color: var(--#{$prefix}navbar-disabled-color);
+  --#{$prefix}nav-btn-padding-x: 0;
+  --#{$prefix}nav-btn-padding-y: #{$nav-btn-padding-y};
+  @include rfs($nav-btn-font-size, --#{$prefix}nav-btn-font-size);
+  --#{$prefix}nav-btn-font-weight: #{$nav-btn-font-weight};
+  --#{$prefix}nav-btn-color: var(--#{$prefix}navbar-color);
+  --#{$prefix}nav-btn-hover-color: var(--#{$prefix}navbar-hover-color);
+  --#{$prefix}nav-btn-disabled-color: var(--#{$prefix}navbar-disabled-color);
   // scss-docs-end navbar-nav-css-vars
 
   display: flex;
@@ -100,8 +100,8 @@
   margin-bottom: 0;
   list-style: none;
 
-  .show > .nav-link,
-  .nav-link.active {
+  .show > .nav-btn,
+  .nav-btn.active {
     color: var(--#{$prefix}navbar-active-color);
   }
 
@@ -116,8 +116,8 @@
 //
 
 .navbar-text {
-  padding-top: $nav-link-padding-y;
-  padding-bottom: $nav-link-padding-y;
+  padding-top: $nav-btn-padding-y;
+  padding-bottom: $nav-btn-padding-y;
   color: var(--#{$prefix}navbar-color);
 
   a,
@@ -205,9 +205,9 @@
             position: absolute;
           }
 
-          .nav-link {
-            padding-right: var(--#{$prefix}navbar-nav-link-padding-x);
-            padding-left: var(--#{$prefix}navbar-nav-link-padding-x);
+          .nav-btn {
+            padding-right: var(--#{$prefix}navbar-nav-btn-padding-x);
+            padding-left: var(--#{$prefix}navbar-nav-btn-padding-x);
           }
         }
 

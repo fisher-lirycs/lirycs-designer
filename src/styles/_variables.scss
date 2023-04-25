@@ -1,7 +1,7 @@
 // Variables
 //
 // Variables should follow the `$component-state-property-size` formula for
-// consistent naming. Ex: $nav-link-disabled-color and $modal-content-box-shadow-xs.
+// consistent naming. Ex: $nav-btn-disabled-color and $modal-content-box-shadow-xs.
 
 // Color system
 
@@ -1093,15 +1093,15 @@ $zindex-toast: 1090 !default;
 // Navs
 
 // scss-docs-start nav-variables
-$nav-link-padding-y: 0.5rem !default;
-$nav-link-padding-x: 1rem !default;
-$nav-link-font-size: null !default;
-$nav-link-font-weight: null !default;
-$nav-link-color: var(--#{$prefix}link-color) !default;
-$nav-link-hover-color: var(--#{$prefix}link-hover-color) !default;
-$nav-link-transition: color 0.15s ease-in-out,
+$nav-btn-padding-y: 0.5rem !default;
+$nav-btn-padding-x: 1rem !default;
+$nav-btn-font-size: null !default;
+$nav-btn-font-weight: null !default;
+$nav-btn-color: var(--#{$prefix}link-color) !default;
+$nav-btn-hover-color: var(--#{$prefix}link-hover-color) !default;
+$nav-btn-transition: color 0.15s ease-in-out,
   background-color 0.15s ease-in-out, border-color 0.15s ease-in-out !default;
-$nav-link-disabled-color: $gray-600 !default;
+$nav-btn-disabled-color: $gray-600 !default;
 
 $nav-tabs-border-color: $gray-300 !default;
 $nav-tabs-border-width: $border-width !default;
@@ -1122,13 +1122,13 @@ $nav-pills-link-active-bg: $component-active-bg !default;
 $navbar-padding-y: $spacer * 0.5 !default;
 $navbar-padding-x: null !default;
 
-$navbar-nav-link-padding-x: 0.5rem !default;
+$navbar-nav-btn-padding-x: 0.5rem !default;
 
 $navbar-brand-font-size: $font-size-lg !default;
-// Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
-$nav-link-height: $font-size-base * $line-height-base + $nav-link-padding-y * 2 !default;
+// Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-btn
+$nav-btn-height: $font-size-base * $line-height-base + $nav-btn-padding-y * 2 !default;
 $navbar-brand-height: $navbar-brand-font-size * $line-height-base !default;
-$navbar-brand-padding-y: ($nav-link-height - $navbar-brand-height) * 0.5 !default;
+$navbar-brand-padding-y: ($nav-btn-height - $navbar-brand-height) * 0.5 !default;
 $navbar-brand-margin-end: 1rem !default;
 
 $navbar-toggler-padding-y: 0.25rem !default;

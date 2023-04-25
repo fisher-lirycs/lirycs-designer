@@ -37,6 +37,7 @@ export interface DropdownProps {
   split?: boolean;
   size?: "normal" | "small" | "large";
   darkMenu?: boolean;
+  isNav?: boolean;
   children: React.ReactNode;
 }
 
@@ -68,6 +69,7 @@ const DropdownMain: React.FC<DropdownMainProps> = ({
   size,
   darkMenu,
   isOpen,
+  isNav,
   setIsOpen,
   children,
 }) => {
@@ -95,6 +97,7 @@ const DropdownMain: React.FC<DropdownMainProps> = ({
     [`btn-lg`]: size === "large",
     [`btn-sm`]: size === "small",
     [`show`]: isOpen,
+    [`nav-btn`]: isNav,
   });
 
   const menuClasses = classNames("dropdown-menu", {
@@ -163,9 +166,15 @@ const DropdownMain: React.FC<DropdownMainProps> = ({
     </>
   );
 };
-export const Dropdown: React.FC<DropdownProps> = ({ split, as, ...rest }) => {
+export const Dropdown: React.FC<DropdownProps> = ({
+  split,
+  as,
+  isNav,
+  ...rest
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const classes = classNames("dropdown", {
+    [`nav-item`]: isNav,
     [`show`]: isOpen,
     [`btn-group`]: as === "ButtonGroup",
   });
@@ -174,11 +183,22 @@ export const Dropdown: React.FC<DropdownProps> = ({ split, as, ...rest }) => {
     <>
       {split ? (
         <ButtonGroup className={classes} size={rest.size}>
-          <DropdownMain {...rest} isOpen={isOpen} setIsOpen={setIsOpen} split />
+          <DropdownMain
+            {...rest}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            split
+            isNav={isNav}
+          />
         </ButtonGroup>
       ) : (
         <div className={classes}>
-          <DropdownMain {...rest} isOpen={isOpen} setIsOpen={setIsOpen} />
+          <DropdownMain
+            {...rest}
+            isOpen={isOpen}
+            setIsOpen={setIsOpen}
+            isNav={isNav}
+          />
         </div>
       )}
     </>
