@@ -9,7 +9,7 @@ export interface ListGroupItemProps {
   href?: string;
   onClick?: () => void;
   theme?: Theme;
-  classNam?: string;
+  className?: string;
   children: React.ReactNode;
 }
 
@@ -20,10 +20,10 @@ export const ListGroupItem: React.FC<ListGroupItemProps> = ({
   href,
   onClick,
   theme,
-  classNam,
+  className,
   children,
 }) => {
-  const classes = classNames("list-group-item", classNam, {
+  const classes = classNames("list-group-item", className, {
     [`active`]: active,
     [`disabled`]: disabled,
     [`list-group-item-${theme}`]: theme,

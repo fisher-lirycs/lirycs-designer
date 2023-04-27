@@ -9,3 +9,5 @@ export type Theme =
   | "light";
 
 export type Size = "normal" | "large" | "small";
+
+export type BreakPoint = "xs" | "sm" | "md" | "lg" | "xl" | "xxl";
