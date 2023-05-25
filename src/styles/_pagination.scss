@@ -26,7 +26,7 @@
   @include list-unstyled();
 }
 
-.page-link {
+.page-btn {
   position: relative;
   display: block;
   padding: var(--#{$prefix}pagination-padding-y) var(--#{$prefix}pagination-padding-x);
@@ -71,25 +71,25 @@
 }
 
 .page-item {
-  &:not(:first-child) .page-link {
+  &:not(:first-child) .page-btn {
     margin-left: $pagination-margin-start;
   }
 
   @if $pagination-margin-start == ($pagination-border-width * -1) {
     &:first-child {
-      .page-link {
+      .page-btn {
         @include border-start-radius(var(--#{$prefix}pagination-border-radius));
       }
     }
 
     &:last-child {
-      .page-link {
+      .page-btn {
         @include border-end-radius(var(--#{$prefix}pagination-border-radius));
       }
     }
   } @else {
     // Add border-radius to all pageLinks in case they have left margin
-    .page-link {
+    .page-btn {
       @include border-radius(var(--#{$prefix}pagination-border-radius));
     }
   }
